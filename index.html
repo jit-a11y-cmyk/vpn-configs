@@ -103,6 +103,9 @@
         
         /* Добавил стиль для трафика, чтобы вписывался в дизайн */
         .traffic-stat { font-size: 11px; color: #64748b; margin-bottom: 15px; text-align: center; }
+        
+        /* Стиль для рекомендации сети */
+        .net-info { font-size: 12px; color: #94a3b8; margin-top: 10px; line-height: 1.4; text-align: left; padding: 0 5px; }
     </style>
 </head>
 <body>
@@ -123,13 +126,14 @@
                 <span class="label">Истекает:</span>
                 <span class="value" id="expireDate">--.--.----</span>
             </div>
+            <div class="net-info" id="netRecommendation">Анализ подключения...</div>
         </div>
 
         <div class="features">
             <div class="feature-item">✅ 4K YouTube</div>
             <div class="feature-item">✅ Минимум пинга</div>
             <div class="feature-item">✅ Нет лагов</div>
-            <div class="feature-item">✅ Безлимит</div>
+            <div class="feature-item) ✅ Безлимит</div>
         </div>
 
         <div class="traffic-stat">
@@ -174,6 +178,27 @@
             traffic += 0.01;
             document.getElementById('trafficCount').innerText = traffic.toFixed(2);
         }, 5000);
+
+        // 4. Детектор типа сети (твоя новая функция)
+        function checkNetworkAndRecommend() {
+            const netElement = document.getElementById('netRecommendation');
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            
+            if (connection) {
+                // Если тип сети мобильный (4g, 3g и т.д.)
+                if (connection.type === 'cellular' || connection.effectiveType.includes('g')) {
+                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
+                } 
+                // Если тип сети Wi-Fi или проводной
+                else {
+                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
+                }
+            } else {
+                // Если браузер не поддерживает API, оставляем нейтральный текст
+                netElement.innerText = "Подключение стабильно. Используйте основной сервер.";
+            }
+        }
+        checkNetworkAndRecommend();
     </script>
 </body>
 </html>
