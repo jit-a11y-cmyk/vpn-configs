@@ -14,8 +14,8 @@
         .label { color: #94a3b8; }
         .btn { display: flex; align-items: center; justify-content: center; background: #2563eb; color: white; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 600; margin-bottom: 12px; transition: all 0.2s; border: none; cursor: pointer; font-size: 15px; }
         .btn:hover { background: #3b82f6; transform: translateY(-1px); }
-        .btn-v2ray { background: #d97706; }
-        .btn-v2ray:hover { background: #f59e0b; }
+        .btn-v2raytun { background: #6366f1; } 
+        .btn-happ { background: #10b981; }
         .btn-tg { background: #0ea5e9; }
         .footer-text { color: #ef4444; font-size: 12px; margin-top: 20px; line-height: 1.5; font-weight: 500; }
     </style>
@@ -30,26 +30,24 @@
                 <span style="color: #4ade80; font-weight: bold;">Активна</span>
             </div>
             <div class="status-row">
-                <span class="label">Доступный трафик:</span>
+                <span class="label">Трафик:</span>
                 <span>447.8 GB / ∞</span>
             </div>
-            <div class="status-row" style="margin-top: 5px;">
-                <div style="width: 100%; background: #262626; height: 6px; border-radius: 3px;">
-                    <div style="width: 45%; background: #60a5fa; height: 100%; border-radius: 3px;"></div>
-                </div>
+            <div style="width: 100%; background: #262626; height: 6px; border-radius: 3px; margin-top: 8px;">
+                <div style="width: 60%; background: #60a5fa; height: 100%; border-radius: 3px;"></div>
             </div>
         </div>
 
-        <h3 style="font-size: 16px; color: #94a3b8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Подключить устройство</h3>
+        <h3 style="font-size: 14px; color: #94a3b8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Подключить устройство</h3>
         
-        <a href="v2rayng://install-config?url=https://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/vpn.txt" class="btn btn-v2ray">Импорт в v2rayNG</a>
-        <a href="happ://import?url=ТВОЯ_ССЫЛКА_RAW" class="btn">Импорт в Happ</a>
-        <a href="https://t.me/svumt" class="btn btn-tg">Поддержка проекта</a>
+        <a href="https://vpnone.ru/connect/?url=v2raytun%3A%2F%2Fimport%2Fhttps://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/vpn.txt" class="btn btn-v2raytun">Импорт в v2rayTun</a>
+        <a href="https://vpnone.ru/connect/?url=happ%3A%2F%2Fadd%2Fhttps://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/vpn.txt" class="btn btn-happ">Импорт в Happ</a>
+        
+        <a href="https://t.me/svumt" class="btn btn-tg">Поддержка @svumt</a>
 
         <div class="footer-text">
-            ⚠️ ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ ЗАПРЕЩЕНА!<br>При нарушении правил ключ аннулируется без возврата средств.
+            ⚠️ ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ ЗАПРЕЩЕНА!<br>При нарушении правил ключ будет аннулирован.
         </div>
     </div>
 </body>
-          </html>
-          
+</html>
