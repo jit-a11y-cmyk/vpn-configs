@@ -133,7 +133,7 @@
             <div class="feature-item">✅ 4K YouTube</div>
             <div class="feature-item">✅ Минимум пинга</div>
             <div class="feature-item">✅ Нет лагов</div>
-            <div class="feature-item) ✅ Безлимит</div>
+            <div class="feature-item">✅ Безлимит</div>
         </div>
 
         <div class="traffic-stat">
@@ -179,23 +179,29 @@
             document.getElementById('trafficCount').innerText = traffic.toFixed(2);
         }, 5000);
 
-        // 4. Детектор типа сети (твоя новая функция)
+        // 4. Улучшенный детектор типа сети
         function checkNetworkAndRecommend() {
             const netElement = document.getElementById('netRecommendation');
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
             
-            if (connection) {
-                // Если тип сети мобильный (4g, 3g и т.д.)
-                if (connection.type === 'cellular' || connection.effectiveType.includes('g')) {
-                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
+            let isCellular = false;
+
+            if (conn) {
+                // Если тип явно указан как мобильный
+                if (conn.type === 'cellular') {
+                    isCellular = true;
                 } 
-                // Если тип сети Wi-Fi или проводной
-                else {
-                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
+                // Если тип не указан (как на iOS), но скорость низкая - скорее всего это мобильная сеть
+                else if (conn.effectiveType && conn.effectiveType.includes('g') && conn.downlink < 10 && conn.type !== 'wifi') {
+                    isCellular = true;
                 }
+            }
+
+            if (isCellular) {
+                netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
             } else {
-                // Если браузер не поддерживает API, оставляем нейтральный текст
-                netElement.innerText = "Подключение стабильно. Используйте основной сервер.";
+                // По умолчанию считаем Wi-Fi (более стабильный вариант)
+                netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
             }
         }
         checkNetworkAndRecommend();
