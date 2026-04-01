@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohma VPN 🐺 | Личный кабинет</title>
+    <style>
+        body { background: #0a0a0a; color: #e5e7eb; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .card { background: #171717; border-radius: 20px; padding: 25px; width: 100%; max-width: 420px; border: 1px solid #262626; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-size: 28px; font-weight: 800; color: #fbbf24; margin-bottom: 25px; letter-spacing: 1px; }
+        .status-box { background: #111111; border-radius: 12px; padding: 18px; margin-bottom: 25px; border: 1px solid #4b5563; text-align: left; position: relative; overflow: hidden; }
+        .status-box::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: #fbbf24; }
+        .status-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .label { color: #94a3b8; }
+        .btn { display: flex; align-items: center; justify-content: center; background: #2563eb; color: white; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 600; margin-bottom: 12px; transition: all 0.2s; border: none; cursor: pointer; font-size: 15px; }
+        .btn:hover { background: #3b82f6; transform: translateY(-1px); }
+        .btn-v2raytun { background: #6366f1; } 
+        .btn-happ { background: #10b981; }
+        .footer-text { color: #ef4444; font-size: 12px; margin-top: 20px; line-height: 1.5; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">🐺 Mohma VPN</div>
+        
+        <div class="status-box">
+            <div class="status-row">
+                <span class="label">Статус:</span>
+                <span style="color: #4ade80; font-weight: bold;">Активна</span>
+            </div>
+            <div class="status-row">
+                <span class="label">Трафик:</span>
+                <span>Безлимит / VIP</span>
+            </div>
+            <div style="width: 100%; background: #262626; height: 6px; border-radius: 3px; margin-top: 8px;">
+                <div style="width: 100%; background: #fbbf24; height: 100%; border-radius: 3px;"></div>
+            </div>
+        </div>
+
+        <h3 style="font-size: 14px; color: #94a3b8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Подключить устройство</h3>
+        
+        <a href="https://vpnone.ru/connect/?url=v2raytun%3A%2F%2Fimport%2Fhttps://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/MohmaVPN.txt" class="btn btn-v2raytun">Импорт в v2rayTun</a>
+        <a href="https://vpnone.ru/connect/?url=happ%3A%2F%2Fadd%2Fhttps://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/MohmaVPN.txt" class="btn btn-happ">Импорт в Happ</a>
+        
+        <div class="footer-text">
+            ⚠️ ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ ЗАПРЕЩЕНА!<br>Контроль доступа по IP активирован.
+        </div>
+    </div>
+</body>
+</html>
+
