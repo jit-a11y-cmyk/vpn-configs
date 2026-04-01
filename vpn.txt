@@ -1,7 +1,5 @@
-#profile-title: Yasmishka VPN☃️
-#profile-notice: Передача/продажа запрещена, в ином случае ключ будет аннулирован!\nПоддержка: @svumt
+#profile-title: Concurs VPN | от +79280867978
 #profile-update-interval: 1
-#subscription-userinfo: upload=0; download=0; total=1099511627776; expire=1924992000
-#profile-web-page-url: 📱 Ключ приватный, передача запрещена!
-vless://cec4d434-0578-483e-a5cb-d6a11ea67e27@109.196.165.76:63500?security=reality&encryption=none&pbk=SRh5sim3DdJIUuDA4R0QdJ6Kgl99klvdtj8qSBlPJic&headerType=none&fp=chrome&spx=%2Fchrome%2Fstatic%2Fimages%2Fv2%2Fgallery%2Fgpay-2.webp&type=tcp&flow=xtls-rprx-vision&sni=dl.google.com&sid=da9506cb1d5b2dcb#%E2%9A%A1%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%20%7C%20Yasmishka%20VPN%20%F0%9F%90%A6
-vless://5c1aa0fb-a26c-4649-bc1d-1da3ab14a222@82.22.40.58:8443?security=reality&encryption=none&pbk=98GUVpWw96tdeGtjIOHXmkklpeA72qQQJoxxyfJ1yTo&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=ya.ru&sid=c0ffee00#%E2%9A%A1%20%D0%97%D0%B0%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B9%20%7C%20Yasmishka%20VPN%20%F0%9F%90%A6
+#subscription-userinfo: upload=0; download=0; total=1099511627776; expire=0
+vless://cc877de3-ffb5-4d0a-9b01-ca086ab53df8@95.163.213.119:9443?mode=multi&security=reality&encryption=none&pbk=S1LRZAgMS-bfA8rNXovBB8HA-mQR9eJPa5h-Z9dH9g8&fp=random&type=grpc&sni=max.ru&sid=d2fa1ca2a4bb7d53#%F0%9F%94%A5%20Concurs%20VPN%20%7C%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9
+vless://cc877de3-ffb5-4d0a-9b01-ca086ab53df8@89.208.199.41:443?security=reality&encryption=none&pbk=S1LRZAgMS-bfA8rNXovBB8HA-mQR9eJPa5h-Z9dH9g8&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=max.ru#%F0%9F%94%A5%20Concurs%20VPN%20%7C%20%D0%97%D0%B0%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B9
