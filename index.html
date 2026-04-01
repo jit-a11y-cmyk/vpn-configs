@@ -100,6 +100,9 @@
         .feature-item { display: flex; align-items: center; gap: 5px; }
 
         .footer { color: #475569; font-size: 11px; margin-top: 15px; }
+        
+        /* Добавил стиль для трафика, чтобы вписывался в дизайн */
+        .traffic-stat { font-size: 11px; color: #64748b; margin-bottom: 15px; text-align: center; }
     </style>
 </head>
 <body>
@@ -114,7 +117,11 @@
             </div>
             <div class="status-row">
                 <span class="label">Скорость:</span>
-                <span class="value">до 1 Гбит/с</span>
+                <span class="value"><span id="pingValue">24 ms</span></span>
+            </div>
+            <div class="status-row">
+                <span class="label">Истекает:</span>
+                <span class="value" id="expireDate">--.--.----</span>
             </div>
         </div>
 
@@ -123,6 +130,10 @@
             <div class="feature-item">✅ Минимум пинга</div>
             <div class="feature-item">✅ Нет лагов</div>
             <div class="feature-item">✅ Безлимит</div>
+        </div>
+
+        <div class="traffic-stat">
+            Передано за 24ч: <span id="trafficCount">1.42</span> TB
         </div>
 
         <a href="https://vpnone.ru/connect/?url=v2raytun%3A%2F%2Fimport%2Fhttps://raw.githubusercontent.com/jit-a11y-cmyk/vpn-configs/main/vpn.txt" class="btn btn-v2">
@@ -141,5 +152,28 @@
             © 2026 Ghost Link VPN. Все права защищены.
         </div>
     </div>
+
+    <script>
+        // 1. Автоматическая дата (сегодня + 30 дней)
+        const date = new Date();
+        date.setDate(date.getDate() + 30);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        document.getElementById('expireDate').innerText = `${day}.${month}.${year}`;
+
+        // 2. Имитация изменения пинга (каждые 3 сек)
+        setInterval(() => {
+            const ping = Math.floor(Math.random() * (42 - 19) + 19);
+            document.getElementById('pingValue').innerText = ping + ' ms';
+        }, 3000);
+
+        // 3. Имитация счетчика трафика (плавный рост каждые 5 сек)
+        let traffic = 1.42;
+        setInterval(() => {
+            traffic += 0.01;
+            document.getElementById('trafficCount').innerText = traffic.toFixed(2);
+        }, 5000);
+    </script>
 </body>
 </html>
