@@ -4,5 +4,4 @@
 #profile-title: Mohma VPN 🐺
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=1099511627776; expire=0
-vless://cc877de3-ffb5-4d0a-9b01-ca086ab53df8@95.163.213.119:9443?mode=multi&security=reality&encryption=none&pbk=S1LRZAgMS-bfA8rNXovBB8HA-mQR9eJPa5h-Z9dH9g8&fp=chrome&type=grpc&sni=max.ru&sid=d2fa1ca2a4bb7d53#Mohma VPN 🐺 | Основной
-vless://cc877de3-ffb5-4d0a-9b01-ca086ab53df8@89.208.199.41:443?security=reality&encryption=none&pbk=S1LRZAgMS-bfA8rNXovBB8HA-mQR9eJPa5h-Z9dH9g8&headerType=none&fp=chrome&type=tcp&sni=max.ru#Mohma VPN 🐺 | Запасной
+vless://50b5d92c-7ca3-4895-845d-c0e6036315be@185.72.86.101:59999?security=reality&encryption=none&pbk=x0t1otRGBv62aJKGNbsQRJGtwh-sp6CEScFS6S8y3EM&headerType=none&type=tcp&flow=xtls-rprx-vision&sni=yastatic.net&sid=2f19c0a1#Mohma%20VPN%20%F0%9F%90%BA%20%7C%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%20%E2%9A%A1
