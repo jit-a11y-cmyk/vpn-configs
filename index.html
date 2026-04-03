@@ -5,7 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghost Link | Твой быстрый VPN 👻</title>
     <style>
-        /* Глубокий темный градиент на фоне */
+        /* --- СТИЛИ ДЛЯ SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020617;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .splash-logo {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .splash-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- ТВОЙ ИЗНАЧАЛЬНЫЙ CSS --- */
         body { 
             background: radial-gradient(circle at top, #1e293b 0%, #020617 100%); 
             color: #f8fafc; 
@@ -17,7 +66,6 @@
             margin: 0; 
         }
 
-        /* Карточка с неоновым свечением */
         .card { 
             background: rgba(23, 23, 23, 0.8); 
             backdrop-filter: blur(10px);
@@ -36,7 +84,6 @@
             box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
         }
 
-        /* Призрачный логотип */
         .logo { 
             font-size: 32px; 
             font-weight: 900; 
@@ -52,7 +99,6 @@
             margin-bottom: 25px;
         }
 
-        /* Статус-бокс */
         .status-box { 
             background: #111827; 
             border-radius: 16px; 
@@ -66,7 +112,6 @@
         .label { color: #64748b; }
         .value { color: #3b82f6; font-weight: 600; }
 
-        /* Кнопки */
         .btn { 
             display: flex; 
             align-items: center; 
@@ -84,8 +129,8 @@
         }
 
         .btn:hover { background: #1d4ed8; filter: brightness(1.1); }
-        .btn-v2 { background: #4f46e5; } /* Фиолетовая для Android */
-        .btn-tg { background: #0ea5e9; margin-top: 10px; } /* Голубая для ТГ */
+        .btn-v2 { background: #4f46e5; }
+        .btn-tg { background: #0ea5e9; margin-top: 10px; }
 
         .features {
             display: grid;
@@ -98,17 +143,17 @@
         }
 
         .feature-item { display: flex; align-items: center; gap: 5px; }
-
         .footer { color: #475569; font-size: 11px; margin-top: 15px; }
-        
-        /* Добавил стиль для трафика, чтобы вписывался в дизайн */
         .traffic-stat { font-size: 11px; color: #64748b; margin-bottom: 15px; text-align: center; }
-        
-        /* Стиль для рекомендации сети */
         .net-info { font-size: 12px; color: #94a3b8; margin-top: 10px; line-height: 1.4; text-align: left; padding: 0 5px; }
     </style>
 </head>
 <body>
+    <div id="splash-screen">
+        <div class="splash-logo">👻 Ghost Link</div>
+        <div class="splash-loader"></div>
+    </div>
+
     <div class="card">
         <div class="logo">👻 Ghost Link</div>
         <div class="subtitle">Приватный доступ нового поколения</div>
@@ -158,7 +203,14 @@
     </div>
 
     <script>
-        // 1. Автоматическая дата (сегодня + 30 дней)
+        // ЛОГИКА ИСЧЕЗНОВЕНИЯ SPLASH SCREEN
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('splash-screen').classList.add('fade-out');
+            }, 2500); // 2.5 секунды задержки
+        });
+
+        // 1. Автоматическая дата
         const date = new Date();
         date.setDate(date.getDate() + 30);
         const day = String(date.getDate()).padStart(2, '0');
@@ -166,42 +218,32 @@
         const year = date.getFullYear();
         document.getElementById('expireDate').innerText = `${day}.${month}.${year}`;
 
-        // 2. Имитация изменения пинга (каждые 3 сек)
+        // 2. Изменение пинга
         setInterval(() => {
             const ping = Math.floor(Math.random() * (42 - 19) + 19);
             document.getElementById('pingValue').innerText = ping + ' ms';
         }, 3000);
 
-        // 3. Имитация счетчика трафика (плавный рост каждые 5 сек)
+        // 3. Счетчик трафика
         let traffic = 1.42;
         setInterval(() => {
             traffic += 0.01;
             document.getElementById('trafficCount').innerText = traffic.toFixed(2);
         }, 5000);
 
-        // 4. Улучшенный детектор типа сети
+        // 4. Детектор типа сети
         function checkNetworkAndRecommend() {
             const netElement = document.getElementById('netRecommendation');
-            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
             
-            let isCellular = false;
-
-            if (conn) {
-                // Если тип явно указан как мобильный
-                if (conn.type === 'cellular') {
-                    isCellular = true;
-                } 
-                // Если тип не указан (как на iOS), но скорость низкая - скорее всего это мобильная сеть
-                else if (conn.effectiveType && conn.effectiveType.includes('g') && conn.downlink < 10 && conn.type !== 'wifi') {
-                    isCellular = true;
+            if (connection) {
+                if (connection.type === 'cellular' || connection.effectiveType.includes('g')) {
+                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
+                } else {
+                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
                 }
-            }
-
-            if (isCellular) {
-                netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
             } else {
-                // По умолчанию считаем Wi-Fi (более стабильный вариант)
-                netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
+                netElement.innerText = "Подключение стабильно. Используйте основной сервер.";
             }
         }
         checkNetworkAndRecommend();
