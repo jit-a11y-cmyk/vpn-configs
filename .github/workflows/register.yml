@@ -1,0 +1,30 @@
+name: Ghost User Registrar
+
+on:
+  repository_dispatch:
+    types: [create_user]
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Create User Profile
+        run: |
+          mkdir -p database/users
+          USER_ID="${{ github.event.client_payload.user_id }}"
+          # Берем содержимое vpn.txt
+          CONFIG=$(cat vpn.txt)
+          # Создаем персональный файл
+          echo "{ \"id\": \"$USER_ID\", \"config\": \"$CONFIG\", \"status\": \"active\" }" > database/users/$USER_ID.json
+          
+      - name: Commit & Push
+        run: |
+          git config --global user.name "Ghost-Registrar"
+          git config --global user.email "bot@ghostlink.vpn"
+          git add .
+          git commit -m "New User: ${{ github.event.client_payload.user_id }} 👻"
+          git push
+          
