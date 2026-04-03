@@ -1,0 +1,28 @@
+name: Pygmalion Status Checker
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Каждый час
+  workflow_dispatch: # Чтобы ты мог запустить его кнопкой для теста
+
+jobs:
+  check-servers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check VPN Nodes
+        run: |
+          # Этот скрипт просто пингует гугл для теста, 
+          # но мы заменим его на проверку твоих ссылок
+          python scripts/ping_check.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "Pygmalion-Bot"
+          git config --global user.email "bot@ghostlink.vpn"
+          git add status.json
+          git diff-index --quiet HEAD || git commit -m "Update server status 🛡️"
+          git push
+          
