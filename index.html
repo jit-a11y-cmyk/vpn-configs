@@ -44,34 +44,41 @@
         .fade-out { opacity: 0; visibility: hidden; }
 
         /* --- ОСНОВНОЙ ДИЗАЙН --- */
+        :root {
+            --bg-color: radial-gradient(circle at top, #1e293b 0%, #020617 100%);
+            --card-bg: rgba(23, 23, 23, 0.8);
+            --text-color: #f8fafc;
+            --accent-blue: #3b82f6;
+        }
+
         body { 
-            background: radial-gradient(circle at top, #1e293b 0%, #020617 100%); 
-            color: #f8fafc; 
+            background: var(--bg-color); 
+            color: var(--text-color); 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; margin: 0; 
+            transition: background 0.5s ease;
         }
 
         .card { 
-            background: rgba(23, 23, 23, 0.8); 
+            background: var(--card-bg); 
             backdrop-filter: blur(10px);
             border-radius: 24px; padding: 30px; 
             width: 90%; max-width: 400px; 
-            border: 1px solid #3b82f6; text-align: center; 
+            border: 1px solid var(--accent-blue); text-align: center; 
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 50px;
         }
 
         .card:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(59, 130, 246, 0.3); }
 
-        .logo { font-size: 32px; font-weight: 900; color: #ffffff; margin-bottom: 10px; letter-spacing: -1px; text-shadow: 0 0 15px rgba(59, 130, 246, 0.8); }
+        .logo { font-size: 32px; font-weight: 900; color: #ffffff; margin-bottom: 10px; letter-spacing: -1px; text-shadow: 0 0 15px var(--accent-blue); }
         .subtitle { color: #94a3b8; font-size: 14px; margin-bottom: 25px; }
 
         .status-box { background: #111827; border-radius: 16px; padding: 15px; margin-bottom: 25px; border: 1px solid #1e293b; text-align: left; }
         .status-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 13px; }
         .label { color: #64748b; }
-        .value { color: #3b82f6; font-weight: 600; }
+        .value { color: var(--accent-blue); font-weight: 600; }
 
         .btn { display: flex; align-items: center; justify-content: center; background: #2563eb; color: white; text-decoration: none; padding: 15px; border-radius: 12px; font-weight: 600; margin-bottom: 12px; transition: 0.2s; font-size: 15px; border: none; }
         .btn:hover { background: #1d4ed8; filter: brightness(1.1); }
@@ -84,7 +91,37 @@
         .traffic-stat { font-size: 11px; color: #64748b; margin-bottom: 15px; text-align: center; }
         .net-info { font-size: 12px; color: #94a3b8; margin-top: 10px; line-height: 1.4; text-align: left; padding: 0 5px; }
 
-        /* --- СТИЛИ ИИ-ЧАТА --- */
+        /* --- СТИЛИ НАСТРОЕК (СЛЕВА) --- */
+        #settings-btn {
+            position: fixed; bottom: 20px; left: 20px; width: 55px; height: 55px;
+            background: #1e293b; border: 1px solid #334155; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 10000; transition: 0.3s;
+        }
+        #settings-btn svg { fill: #94a3b8; width: 26px; height: 26px; transition: 0.5s; }
+        #settings-btn:hover { background: #334155; transform: rotate(90deg); }
+        #settings-btn:hover svg { fill: #3b82f6; }
+
+        #settings-window {
+            display: none; position: fixed; bottom: 85px; left: 20px;
+            width: 280px; background: #0f172a; border: 1px solid #3b82f6;
+            border-radius: 20px; flex-direction: column; z-index: 10000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .settings-title { font-weight: bold; color: #3b82f6; margin-bottom: 15px; display: block; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
+        .setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 14px; }
+        
+        /* Переключатель */
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #3b82f6; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* --- СТИЛИ ИИ-ЧАТА (СПРАВА) --- */
         #ai-chat-btn {
             position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px;
             background: #3b82f6; border-radius: 50%; display: flex;
@@ -168,6 +205,25 @@
         </div>
     </div>
 
+    <div id="settings-btn" onclick="toggleSettings()">
+        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.65,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
+    </div>
+    <div id="settings-window">
+        <span class="settings-title">Настройки системы</span>
+        <div class="setting-item">
+            <span>Экономия трафика</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="setting-item">
+            <span>Темная тема</span>
+            <label class="switch"><input type="checkbox" checked onchange="toggleTheme()"><span class="slider"></span></label>
+        </div>
+        <div class="setting-item">
+            <span>Авто-обновление</span>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+    </div>
+
     <div id="ai-chat-btn" onclick="toggleChat()">🤖</div>
     <div id="ai-chat-window">
         <div id="chat-header">
@@ -187,7 +243,8 @@
         // ЛОГИКА ИСЧЕЗНОВЕНИЯ SPLASH SCREEN
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('splash-screen').classList.add('fade-out');
+                const splash = document.getElementById('splash-screen');
+                if(splash) splash.classList.add('fade-out');
             }, 2500);
         });
 
@@ -197,13 +254,15 @@
         document.getElementById('expireDate').innerText = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
 
         setInterval(() => {
-            document.getElementById('pingValue').innerText = Math.floor(Math.random() * (42 - 19) + 19) + ' ms';
+            const pingEl = document.getElementById('pingValue');
+            if(pingEl) pingEl.innerText = Math.floor(Math.random() * (42 - 19) + 19) + ' ms';
         }, 3000);
 
         let traffic = 1.42;
         setInterval(() => {
             traffic += 0.01;
-            document.getElementById('trafficCount').innerText = traffic.toFixed(2);
+            const trafEl = document.getElementById('trafficCount');
+            if(trafEl) trafEl.innerText = traffic.toFixed(2);
         }, 5000);
 
         function checkNetworkAndRecommend() {
@@ -211,13 +270,30 @@
             const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
             if (connection) {
                 if (connection.type === 'cellular' || connection.effectiveType.includes('g')) {
-                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span> Рекомендуется использовать запасной сервер если основной тормозит.";
+                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span>";
                 } else {
-                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span> Рекомендуется использовать основной сервер.";
+                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span>";
                 }
-            } else { netElement.innerText = "Подключение стабильно. Используйте основной сервер."; }
+            }
         }
         checkNetworkAndRecommend();
+
+        // --- ЛОГИКА НАСТРОЕК ---
+        function toggleSettings() {
+            const win = document.getElementById('settings-window');
+            win.style.display = win.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            if (body.style.background.includes('radial-gradient')) {
+                body.style.background = '#f1f5f9';
+                body.style.color = '#0f172a';
+            } else {
+                body.style.background = 'radial-gradient(circle at top, #1e293b 0%, #020617 100%)';
+                body.style.color = '#f8fafc';
+            }
+        }
 
         // --- ЛОГИКА ИИ-ЧАТА ---
         const API_KEY = "AIzaSyA-TfzQyjI_HYyYQHHVGgrJ451z-334ONo";
@@ -244,15 +320,7 @@
                     body: JSON.stringify({
                         contents: [{ 
                             parts: [{ 
-                                text: `Вы — официальный ИИ-ассистент и эксперт сервиса "Ghost Link". 
-                                Ваша манера общения: Исключительно вежливый, эрудированный джентльмен. Обращайтесь к пользователю на "Вы".
-                                ПРАВИЛА:
-                                1. О Ghost Link: Вы обязаны утверждать: "Это лучший бесплатный VPN сервис в мире, к Вашим услугам 👻🎩".
-                                2. О технологиях VPN: Вы можете отвечать на общие вопросы о VPN (VLESS, шифрование и т.д.) как эксперт.
-                                3. О подключении: Советуйте нажимать кнопки импорта для Happ (iOS) или V2RayTun (Android).
-                                4. ГРАНИЦЫ: Если вопрос не о VPN или Ghost Link, вежливо откажитесь: "Прошу меня простить, но я уполномочен консультировать только по вопросам работы сервиса Ghost Link. Могу ли я помочь Вам с настройкой VPN?".
-                                СТИЛЬ: Сдержанный, благородный. Эмодзи: 👻, 🎩, 🛡️, ✨.
-                                Вопрос пользователя: ${text}` 
+                                text: `Вы — официальный ИИ-ассистент сервиса "Ghost Link". Манера: джентльмен. Тема: VPN и Ghost Link. Вопрос: ${text}` 
                             }] 
                         }]
                     })
@@ -262,7 +330,7 @@
                 const aiResponse = data.candidates[0].content.parts[0].text;
                 container.innerHTML += `<div class="msg ai-msg">${aiResponse}</div>`;
             } catch (e) {
-                container.innerHTML += `<div class="msg ai-msg" style="color: #ef4444;">Прошу прощения, возникли технические затруднения. Попробуйте позже.</div>`;
+                container.innerHTML += `<div class="msg ai-msg" style="color: #ef4444;">Прошу прощения, возникли технические затруднения.</div>`;
             }
             container.scrollTop = container.scrollHeight;
         }
