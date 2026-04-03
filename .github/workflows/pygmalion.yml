@@ -22,7 +22,11 @@ jobs:
         run: |
           git config --global user.name "Pygmalion-Bot"
           git config --global user.email "bot@ghostlink.vpn"
-          git add status.json
-          git diff-index --quiet HEAD || git commit -m "Update server status 🛡️"
-          git push
+          # Добавляем файл, если он создался
+          git add status.json 
+          # Если изменений нет, робот не будет ругаться
+          git diff-index --quiet HEAD || (git commit -m "Update server status 🛡️" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
           
