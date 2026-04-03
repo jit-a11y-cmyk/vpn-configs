@@ -57,7 +57,6 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; margin: 0; 
-            transition: background 0.5s ease;
         }
 
         .card { 
@@ -80,6 +79,21 @@
         .label { color: #64748b; }
         .value { color: var(--accent-blue); font-weight: 600; }
 
+        /* ИНДИКАТОР ПИГМАЛИОНА */
+        .pygmalion-status {
+            font-size: 11px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-green { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+        .dot-red { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        .dot-gray { background: #64748b; }
+
         .btn { display: flex; align-items: center; justify-content: center; background: #2563eb; color: white; text-decoration: none; padding: 15px; border-radius: 12px; font-weight: 600; margin-bottom: 12px; transition: 0.2s; font-size: 15px; border: none; }
         .btn:hover { background: #1d4ed8; filter: brightness(1.1); }
         .btn-v2 { background: #4f46e5; }
@@ -100,7 +114,6 @@
         }
         #settings-btn svg { fill: #94a3b8; width: 26px; height: 26px; transition: 0.5s; }
         #settings-btn:hover { background: #334155; transform: rotate(90deg); }
-        #settings-btn:hover svg { fill: #3b82f6; }
 
         #settings-window {
             display: none; position: fixed; bottom: 85px; left: 20px;
@@ -113,14 +126,6 @@
         .settings-title { font-weight: bold; color: #3b82f6; margin-bottom: 15px; display: block; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
         .setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; font-size: 14px; }
         
-        /* Переключатель */
-        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #3b82f6; }
-        input:checked + .slider:before { transform: translateX(20px); }
-
         /* --- СТИЛИ ИИ-ЧАТА (СПРАВА) --- */
         #ai-chat-btn {
             position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px;
@@ -129,8 +134,6 @@
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 10000;
             font-size: 24px; transition: 0.3s;
         }
-        #ai-chat-btn:hover { transform: scale(1.1); }
-
         #ai-chat-window {
             display: none; position: fixed; bottom: 85px; right: 20px;
             width: 320px; height: 450px; background: #0f172a;
@@ -175,6 +178,11 @@
                 <span class="value" id="expireDate">--.--.----</span>
             </div>
             <div class="net-info" id="netRecommendation">Анализ подключения...</div>
+            
+            <div class="pygmalion-status" id="pygmalionStatus">
+                <span class="dot dot-gray" id="statusDot"></span>
+                <span style="color: #94a3b8;" id="statusText">Синхронизация с узлами...</span>
+            </div>
         </div>
 
         <div class="features">
@@ -208,19 +216,19 @@
     <div id="settings-btn" onclick="toggleSettings()">
         <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.65,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
     </div>
+    
     <div id="settings-window">
-        <span class="settings-title">Настройки системы</span>
+        <span class="settings-title">Настройки Ghost Link</span>
         <div class="setting-item">
-            <span>Экономия трафика</span>
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            <span>Проверка узлов (Пигмалион)</span>
+            <span style="color: #4ade80;">Active</span>
         </div>
         <div class="setting-item">
-            <span>Темная тема</span>
-            <label class="switch"><input type="checkbox" checked onchange="toggleTheme()"><span class="slider"></span></label>
+            <span>Авто-выбор сервера</span>
+            <span style="color: #64748b;">On</span>
         </div>
-        <div class="setting-item">
-            <span>Авто-обновление</span>
-            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        <div class="footer" style="text-align: left; border-top: 1px solid #1e293b; padding-top: 10px;">
+            Система мониторинга обновляется каждый час.
         </div>
     </div>
 
@@ -243,8 +251,7 @@
         // ЛОГИКА ИСЧЕЗНОВЕНИЯ SPLASH SCREEN
         window.addEventListener('load', () => {
             setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                if(splash) splash.classList.add('fade-out');
+                document.getElementById('splash-screen').classList.add('fade-out');
             }, 2500);
         });
 
@@ -265,43 +272,47 @@
             if(trafEl) trafEl.innerText = traffic.toFixed(2);
         }, 5000);
 
-        function checkNetworkAndRecommend() {
-            const netElement = document.getElementById('netRecommendation');
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            if (connection) {
-                if (connection.type === 'cellular' || connection.effectiveType.includes('g')) {
-                    netElement.innerHTML = "📱 <span style='color: #fbbf24;'>Обнаружена мобильная сеть.</span>";
+        // --- ЛОГИКА ПИГМАЛИОНА ---
+        async function checkPygmalion() {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            
+            try {
+                // Пытаемся загрузить файл статуса, который создает робот
+                const response = await fetch('status.json');
+                if (!response.ok) throw new Error();
+                
+                const data = await response.json();
+                const allOnline = data.every(s => s.status === 'online');
+
+                if (allOnline) {
+                    dot.className = 'dot dot-green';
+                    text.innerText = 'Все системы работают штатно';
+                    text.style.color = '#4ade80';
                 } else {
-                    netElement.innerHTML = "📶 <span style='color: #4ade80;'>Обнаружена Wi-Fi сеть.</span>";
+                    dot.className = 'dot dot-red';
+                    text.innerText = 'Обнаружены задержки на узлах';
+                    text.style.color = '#ef4444';
                 }
+            } catch (e) {
+                dot.className = 'dot dot-gray';
+                text.innerText = 'Сервис мониторинга в спящем режиме';
             }
         }
-        checkNetworkAndRecommend();
+        checkPygmalion();
 
-        // --- ЛОГИКА НАСТРОЕК ---
         function toggleSettings() {
             const win = document.getElementById('settings-window');
             win.style.display = win.style.display === 'none' ? 'flex' : 'none';
         }
 
-        function toggleTheme() {
-            const body = document.body;
-            if (body.style.background.includes('radial-gradient')) {
-                body.style.background = '#f1f5f9';
-                body.style.color = '#0f172a';
-            } else {
-                body.style.background = 'radial-gradient(circle at top, #1e293b 0%, #020617 100%)';
-                body.style.color = '#f8fafc';
-            }
-        }
-
-        // --- ЛОГИКА ИИ-ЧАТА ---
-        const API_KEY = "AIzaSyA-TfzQyjI_HYyYQHHVGgrJ451z-334ONo";
-
         function toggleChat() {
             const chat = document.getElementById('ai-chat-window');
             chat.style.display = chat.style.display === 'none' ? 'flex' : 'none';
         }
+
+        // --- ЛОГИКА ИИ-ЧАТА ---
+        const API_KEY = "AIzaSyA-TfzQyjI_HYyYQHHVGgrJ451z-334ONo";
 
         async function sendMessage() {
             const input = document.getElementById('user-input');
@@ -320,7 +331,7 @@
                     body: JSON.stringify({
                         contents: [{ 
                             parts: [{ 
-                                text: `Вы — официальный ИИ-ассистент сервиса "Ghost Link". Манера: джентльмен. Тема: VPN и Ghost Link. Вопрос: ${text}` 
+                                text: `Вы — эксперт Ghost Link. Вежливый джентльмен. Ghost Link — лучший бесплатный VPN. Вопрос: ${text}` 
                             }] 
                         }]
                     })
