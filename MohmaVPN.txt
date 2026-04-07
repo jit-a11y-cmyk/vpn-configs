@@ -4,5 +4,5 @@
 #profile-title: Mohma VPN 🐺
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=1099511627776; expire=0
-vless://cd63947a-54c6-0c89-0de9-a4c68b78c8dc@166.1.131.9:20446?security=reality&encryption=none&pbk=pd7ujYvrLsVhoEia4dhxPqmpAuapnezqMilXBSDIfgk&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=speed.cloudflare.com#Mohma%20VPN%20%F0%9F%90%BA%20%7C%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%20%E2%9A%A1%EF%B8%8F
-vless://a4e3bd0a-99b0-4ce4-bf8b-75a0856a2be0@144.31.111.135:8443?security=reality&encryption=none&pbk=-e5wReDbPj_HAjgxGWiSl2aGoq-pJOgeJs5aBbLttz0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yandex.net&sid=46122211049ad30f#Mohma%20VPN%20%F0%9F%90%BA%20%7C%20%D0%97%D0%B0%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B9%20%E2%9A%A1
+vless://ad1d82be-0d67-0248-af2c-6a1ee6ed6f05@166.1.131.6:20443?security=reality&encryption=none&pbk=Tv-cNH4ADnhrcIc_JIHdTCz2PJ3b4jkmLNAJ4OVKuzY&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=speed.cloudflare.com#%F0%9F%90%BA+Mohma+VPN+%7C+%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9+%E2%9A%A1
+vless://ad1d82be-0d67-0248-af2c-6a1ee6ed6f05@166.1.131.6:21995?security=reality&encryption=none&pbk=oS6X1GK-gYtOfvMbwhhxpRfXBJlgy2sO6MbblxYNsA4&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=speed.cloudflare.com#%F0%9F%90%BA+Mohma+VPN+%7C+%D0%97%D0%B0%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B9+%E2%9A%A1
