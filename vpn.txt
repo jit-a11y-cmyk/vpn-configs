@@ -2,5 +2,5 @@
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=1099511627776; expire=0
 #announce:Если не работает Обновляйте подписку 🔄 Передача ключа запрещена, в ином случае он будет заблокирован! Поддержкка: @svumt
-vless://a4e3bd0a-99b0-4ce4-bf8b-75a0856a2be0@45.144.54.67:8443?security=reality&encryption=none&pbk=-e5wReDbPj_HAjgxGWiSl2aGoq-pJOgeJs5aBbLttz0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yandex.net&sid=46122211049ad30f#%E2%9A%A1%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9
-vless://a4e3bd0a-99b0-4ce4-bf8b-75a0856a2be0@144.31.111.135:8443?security=reality&encryption=none&pbk=-e5wReDbPj_HAjgxGWiSl2aGoq-pJOgeJs5aBbLttz0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yandex.net&sid=46122211049ad30f#%E2%9A%A1%20%D0%97%D0%B0%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B9
+vless://f9348c30-8a34-40bc-ae15-e938235b9a6b@64.188.98.68.vhub.pro:443?mode=gun&security=tls&encryption=none&alpn=h2&authority=&fp=chrome&allowinsecure=0&type=grpc&serviceName=%2Fsequre%2Fgrpc%2F&sni=64.188.98.68.vhub.pro#%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%E2%9A%A1
+vless://2d5728e2-bfca-4081-86e2-3b34200219be@51.250.25.175:5443?security=reality&encryption=none&pbk=LGcG8Sqv5vPDypbaEgHV0ZGqQOBkgDepPWXyDohbVXQ&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=max.ru#%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%E2%9A%A1
