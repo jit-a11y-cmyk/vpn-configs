@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GHOST AI | Advanced</title>
     <style>
-        /* Оригинальная цветовая палитра Gemini Dark */
         :root {
             --bg-main: #131314;
             --bg-surface: #1e1f20;
@@ -27,14 +26,12 @@
             overflow: hidden;
         }
 
-        /* Верхняя панель */
         .header {
             padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--bg-main);
-            user-select: none;
         }
 
         .header-title {
@@ -46,7 +43,6 @@
             gap: 8px;
         }
 
-        /* Центр (Приветствие) */
         .greeting {
             position: absolute;
             top: 40%;
@@ -66,7 +62,6 @@
             font-weight: 500;
         }
 
-        /* Чат */
         .chat-container {
             flex: 1;
             overflow-y: auto;
@@ -75,7 +70,6 @@
             flex-direction: column;
             align-items: center;
             scroll-behavior: smooth;
-            padding-bottom: 40px;
         }
 
         .chat-content {
@@ -106,7 +100,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
         }
 
         .avatar-ai { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--accent); }
@@ -118,17 +111,17 @@
             line-height: 1.6;
             color: var(--text-primary);
             word-wrap: break-word;
-            padding-top: 6px;
         }
 
         .message-content img {
-            max-width: 300px;
+            max-width: 100%;
+            max-height: 300px;
             border-radius: 12px;
             margin-bottom: 10px;
             display: block;
+            border: 1px solid var(--border-color);
         }
 
-        /* Ввод текста */
         .input-wrapper {
             width: 100%;
             max-width: 840px;
@@ -136,7 +129,6 @@
             padding: 0 20px 20px 20px;
             box-sizing: border-box;
             background: var(--bg-main);
-            position: relative;
         }
 
         .image-preview-container {
@@ -145,7 +137,6 @@
             background: var(--bg-surface);
             border-radius: 12px 12px 0 0;
             border: 1px solid var(--border-color);
-            border-bottom: none;
             position: relative;
         }
 
@@ -157,55 +148,38 @@
         .remove-image {
             position: absolute;
             top: 5px;
-            left: 60px;
-            background: rgba(0,0,0,0.7);
+            left: 65px;
+            background: #000;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .input-box {
             background: var(--bg-input);
-            border-radius: 24px;
+            border-radius: 28px;
             display: flex;
-            align-items: flex-end;
-            padding: 10px 15px;
+            align-items: center;
+            padding: 8px 16px;
             gap: 10px;
-            border: 1px solid transparent;
-            transition: 0.2s;
-        }
-
-        .input-box:focus-within {
-            background: var(--bg-surface);
-            border-color: var(--border-color);
         }
 
         .icon-btn {
             background: transparent;
             border: none;
             color: var(--text-secondary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
-            flex-shrink: 0;
+            padding: 8px;
+            border-radius: 50%;
         }
 
-        .icon-btn:hover {
-            background: rgba(255,255,255,0.08);
-            color: var(--text-primary);
-        }
+        .icon-btn:hover { background: rgba(255,255,255,0.1); }
 
         textarea {
             flex: 1;
@@ -213,29 +187,22 @@
             border: none;
             color: var(--text-primary);
             font-size: 16px;
-            font-family: inherit;
-            resize: none;
-            padding: 10px 0;
-            max-height: 150px;
             outline: none;
-            line-height: 1.5;
-            min-height: 24px;
+            resize: none;
+            max-height: 200px;
+            font-family: inherit;
         }
 
-        textarea::placeholder { color: #8e918f; }
-
         .loader {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(168, 199, 250, 0.3);
             border-top-color: var(--accent);
-            animation: spin 1s ease-in-out infinite;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin { to { transform: rotate(360deg); } }
-
     </style>
 </head>
 <body>
@@ -245,215 +212,127 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C12 2 12 8 18 8C12 8 12 14 12 14C12 14 12 8 6 8C12 8 12 2 12 2ZM17 14C17 14 17 17 20 17C17 17 17 20 17 20C17 20 17 17 14 17C17 17 17 14 17 14Z"/></svg>
             Ghost AI 1.5
         </div>
-        <div class="avatar avatar-user" style="width: 32px; height: 32px; font-size: 12px;">GL</div>
+        <div class="avatar avatar-user" style="width: 32px; height: 32px; font-size: 10px;">GL</div>
     </div>
 
     <div class="greeting" id="greeting">
         <h1>Марша вогIийла, Брат</h1>
-        <p style="color: var(--text-secondary); font-size: 18px;">Я Ghost AI. Загрузи фото задачи или напиши вопрос.</p>
+        <p style="color: var(--text-secondary);">Я Ghost AI. Скинь задачу или фото.</p>
     </div>
 
     <div class="chat-container" id="chatBox">
-        <div class="chat-content" id="chatContent">
-            </div>
+        <div class="chat-content" id="chatContent"></div>
     </div>
 
     <div class="input-wrapper">
         <div class="image-preview-container" id="imagePreviewContainer">
-            <img id="imagePreview" src="" alt="preview">
+            <img id="imagePreview" src="">
             <button class="remove-image" onclick="removeImage()">✕</button>
         </div>
         <div class="input-box">
             <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
-            
-            <button class="icon-btn" onclick="document.getElementById('fileInput').click()" title="Прикрепить изображение">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <button class="icon-btn" onclick="document.getElementById('fileInput').click()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
             </button>
-            
-            <textarea id="userInput" placeholder="Введите запрос или прикрепите фото..." rows="1" oninput="autoResize(this)" onkeydown="handleEnter(event)"></textarea>
-            
-            <button class="icon-btn" id="sendBtn" onclick="sendMessage()">
+            <textarea id="userInput" placeholder="Введите запрос..." rows="1" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
+            <button class="icon-btn" id="sendBtn" onclick="sendMessage()" style="color: var(--accent);">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
         </div>
     </div>
 
     <script>
-        // ТВОЙ ДОВЕРЕННЫЙ КЛЮЧ
         const API_KEY = "AIzaSyAX53N5GYUnl7IjCH5Hcn50ARI54Wqy98k";
-        
         const chatContent = document.getElementById('chatContent');
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
         const greeting = document.getElementById('greeting');
-        const fileInput = document.getElementById('fileInput');
         const imagePreviewContainer = document.getElementById('imagePreviewContainer');
         const imagePreview = document.getElementById('imagePreview');
 
         let currentImageBase64 = null;
         let currentImageMimeType = null;
 
-        // Авторасширение поля ввода
-        function autoResize(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = textarea.scrollHeight + 'px';
-        }
-
-        // Отправка по Enter (без Shift)
-        function handleEnter(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        }
-
-        // Обработка загрузки фото
         function handleImageUpload(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = e => {
                     imagePreview.src = e.target.result;
                     imagePreviewContainer.style.display = 'block';
-                    
-                    // Разбираем base64 для Google API
-                    const base64String = e.target.result.split(',')[1];
-                    currentImageBase64 = base64String;
+                    currentImageBase64 = e.target.result.split(',')[1];
                     currentImageMimeType = file.type;
-                    
-                    userInput.focus();
-                }
+                };
                 reader.readAsDataURL(file);
             }
         }
 
         function removeImage() {
             currentImageBase64 = null;
-            currentImageMimeType = null;
             imagePreviewContainer.style.display = 'none';
-            fileInput.value = '';
         }
 
         async function sendMessage() {
             const text = userInput.value.trim();
             if (!text && !currentImageBase64) return;
 
-            // Убираем приветствие при первом сообщении
-            if (greeting.style.display !== 'none') {
-                greeting.style.display = 'none';
-            }
+            greeting.style.display = 'none';
+            const userImg = currentImageBase64 ? imagePreview.src : null;
+            const userText = text;
 
-            // Блокируем ввод
-            const currentText = text;
-            const hasImage = currentImageBase64 !== null;
-            const imgSrc = hasImage ? imagePreview.src : null;
-            
             userInput.value = '';
-            userInput.style.height = 'auto';
             userInput.disabled = true;
             sendBtn.innerHTML = '<div class="loader"></div>';
-            sendBtn.disabled = true;
 
-            // Отображаем сообщение юзера
-            addUserMessage(currentText, imgSrc);
+            addUserMessage(userText, userImg);
             
-            // Сбрасываем превью картинки
-            const imgDataToSend = currentImageBase64;
-            const imgMimeToSend = currentImageMimeType;
+            const aiMsgId = 'ai-' + Date.now();
+            addAIMessage('<div class="loader"></div>', aiMsgId);
+            
+            const imgData = currentImageBase64;
+            const imgMime = currentImageMimeType;
             removeImage();
 
-            // Создаем заглушку для ответа ИИ
-            const aiMessageId = 'msg-' + Date.now();
-            addAIMessage('<div class="loader" style="width: 16px; height: 16px; border-width: 2px;"></div>', aiMessageId);
-            scrollToBottom();
-
             try {
-                // Формируем payload. Если есть картинка, добавляем inlineData
-                let parts = [{ "text": currentText || "Опиши, что на этом изображении и реши задачу, если она есть." }];
-                
-                if (hasImage) {
-                    parts.push({
-                        "inlineData": {
-                            "mimeType": imgMimeToSend,
-                            "data": imgDataToSend
-                        }
-                    });
-                }
-
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                // ПЕРЕХОД НА V1 API ДЛЯ СТАБИЛЬНОСТИ
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        "system_instruction": {
-                            "parts": { 
-                                "text": "Ты Ghost AI. Ты общаешься в строгом, экспертном стиле. Ты умеешь решать ВПР, математику и анализировать фото. Обращайся к пользователю как к брату. Можешь использовать чеченские фразы приветствия/прощания." 
-                            }
-                        },
                         "contents": [{
-                            "role": "user",
-                            "parts": parts
+                            "parts": [
+                                { "text": "Ты Ghost AI. Строгий, экспертный стиль. Ты чеченский помощник. Решай задачи ВПР и математику. Отвечай по-братски. Запрос: " + (userText || "Разбери фото.") },
+                                ...(imgData ? [{ "inlineData": { "mimeType": imgMime, "data": imgData } }] : [])
+                            ]
                         }]
                     })
                 });
 
                 const data = await response.json();
-                const aiResponseBox = document.getElementById(aiMessageId);
+                const box = document.getElementById(aiMsgId);
 
                 if (data.error) {
-                    aiResponseBox.innerHTML = "❌ Ошибка соединения: " + data.error.message;
-                } else if (data.candidates && data.candidates[0].content) {
-                    let aiText = data.candidates[0].content.parts[0].text;
-                    aiText = aiText.replace(/\n/g, '<br>');
-                    aiText = aiText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-                    aiResponseBox.innerHTML = aiText;
+                    box.innerHTML = "❌ Ошибка: " + data.error.message;
                 } else {
-                    aiResponseBox.innerHTML = "Системный сбой. Повторите запрос.";
+                    let resText = data.candidates[0].content.parts[0].text;
+                    box.innerHTML = resText.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
                 }
-
-            } catch (error) {
-                document.getElementById(aiMessageId).innerHTML = "❌ Ошибка сети. Проверьте VPN (Ghost Link).";
+            } catch (e) {
+                document.getElementById(aiMsgId).innerHTML = "❌ Ошибка сети. Проверь Ghost Link VPN.";
             } finally {
                 userInput.disabled = false;
                 sendBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
-                sendBtn.disabled = false;
-                userInput.focus();
-                scrollToBottom();
+                document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
             }
         }
 
-        function addUserMessage(text, imgSrc) {
-            let mediaHtml = imgSrc ? `<img src="${imgSrc}" alt="uploaded image">` : '';
-            let textHtml = text ? `<div>${text}</div>` : '';
-            
-            const html = `
-                <div class="message-row">
-                    <div class="avatar avatar-user">GL</div>
-                    <div class="message-content">
-                        ${mediaHtml}
-                        ${textHtml}
-                    </div>
-                </div>
-            `;
-            chatContent.insertAdjacentHTML('beforeend', html);
+        function addUserMessage(t, img) {
+            chatContent.innerHTML += `<div class="message-row"><div class="avatar avatar-user">GL</div><div class="message-content">${img ? `<img src="${img}">` : ''}${t}</div></div>`;
         }
 
-        function addAIMessage(text, id) {
-            const html = `
-                <div class="message-row">
-                    <div class="avatar avatar-ai">✨</div>
-                    <div class="message-content" id="${id}">
-                        ${text}
-                    </div>
-                </div>
-            `;
-            chatContent.insertAdjacentHTML('beforeend', html);
-        }
-
-        function scrollToBottom() {
-            const chatBox = document.getElementById('chatBox');
-            chatBox.scrollTop = chatBox.scrollHeight;
+        function addAIMessage(t, id) {
+            chatContent.innerHTML += `<div class="message-row"><div class="avatar avatar-ai">✨</div><div class="message-content" id="${id}">${t}</div></div>`;
         }
     </script>
 </body>
-  </html>
-
+</html>
