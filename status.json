@@ -20,10 +20,6 @@
     "status": "online"
   },
   {
-    "ip": "us.great-server-list.co.uk",
-    "status": "online"
-  },
-  {
     "ip": "62.60.149.222",
     "status": "online"
   },
@@ -33,14 +29,22 @@
   },
   {
     "ip": "8.217.49.16",
-    "status": "online"
-  },
-  {
-    "ip": "158.160.108.209",
     "status": "offline"
   },
   {
-    "ip": "95.163.183.153",
+    "ip": "ru03.myxavpn.com",
+    "status": "online"
+  },
+  {
+    "ip": "51.250.13.158",
+    "status": "online"
+  },
+  {
+    "ip": "ru.lavivas.org",
+    "status": "online"
+  },
+  {
+    "ip": "194.154.30.150",
     "status": "online"
   }
 ]
