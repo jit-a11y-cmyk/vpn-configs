@@ -1,46 +1,58 @@
 [
   {
-    "ip": "51.250.13.158",
-    "status": "offline"
-  },
-  {
-    "ip": "cluster-de-2.firstvideocdn.ru",
-    "status": "offline"
-  },
-  {
-    "ip": "193.178.226.149.vhub.pro",
+    "ip": "ger01.myxavpn.com",
     "status": "online"
   },
   {
-    "ip": "212.95.39.25.vhub.pro",
+    "ip": "vpn.tgflovv.ru",
     "status": "online"
   },
   {
-    "ip": "62.60.149.222",
+    "ip": "russia.myxavpn.com",
     "status": "online"
   },
   {
-    "ip": "ind.myxavpn.com",
-    "status": "offline"
-  },
-  {
-    "ip": "193.188.23.65",
-    "status": "offline"
-  },
-  {
-    "ip": "31.56.179.200",
+    "ip": "fl04.myxavpn.com",
     "status": "online"
   },
   {
-    "ip": "31.56.27.50",
+    "ip": "fr05.myxavpn.com",
+    "status": "online"
+  },
+  {
+    "ip": "nv01.myxavpn.com",
+    "status": "online"
+  },
+  {
+    "ip": "ae.prowebcore.ru",
+    "status": "online"
+  },
+  {
+    "ip": "pl.prowebcore.ru",
+    "status": "online"
+  },
+  {
+    "ip": "gb.prowebcore.ru",
+    "status": "online"
+  },
+  {
+    "ip": "ukos2.ksnodes.net",
+    "status": "online"
+  },
+  {
+    "ip": "ch.prowebcore.ru",
+    "status": "online"
+  },
+  {
+    "ip": "isp2.myxavpn.com",
+    "status": "online"
+  },
+  {
+    "ip": "nlety.ksnodes.net",
     "status": "online"
   },
   {
     "ip": "se.prowebcore.ru",
-    "status": "online"
-  },
-  {
-    "ip": "ru.tgflovv.ru",
     "status": "online"
   }
 ]
