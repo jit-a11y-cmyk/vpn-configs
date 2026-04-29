@@ -1,58 +1,6 @@
 [
   {
-    "ip": "ger01.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "vpn.tgflovv.ru",
-    "status": "online"
-  },
-  {
-    "ip": "russia.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "fl04.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "fr05.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "nv01.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "ae.prowebcore.ru",
-    "status": "online"
-  },
-  {
-    "ip": "pl.prowebcore.ru",
-    "status": "online"
-  },
-  {
-    "ip": "gb.prowebcore.ru",
-    "status": "online"
-  },
-  {
-    "ip": "ukos2.ksnodes.net",
-    "status": "online"
-  },
-  {
-    "ip": "ch.prowebcore.ru",
-    "status": "online"
-  },
-  {
-    "ip": "isp2.myxavpn.com",
-    "status": "online"
-  },
-  {
-    "ip": "nlety.ksnodes.net",
-    "status": "online"
-  },
-  {
-    "ip": "se.prowebcore.ru",
-    "status": "online"
+    "ip": "expired.example.com",
+    "status": "offline"
   }
 ]
