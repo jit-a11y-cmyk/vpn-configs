@@ -9,7 +9,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo
 from aiogram.exceptions import TelegramBadRequest
 
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = "7799595838:AAFNmrdHWQSw9hV3SY_mv54vgbpRMa-xXnk"
 CHANNEL_ID = -1002640635653      
 MOD_CHAT_ID = -1003911037255     
 RULES_LINK = "https://t.me/+wd4SPOWd68MzNGE6"
