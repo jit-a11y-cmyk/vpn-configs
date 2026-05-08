@@ -248,23 +248,21 @@ async def acf_ai_chat(message: types.Message, state: FSMContext):
 
     try:
 
+        with open("ACF файловое.txt", "r", encoding="utf-8") as f:
+            acf_knowledge = f.read()
+
         prompt = f"""
 Ты — эксперт по Anime Characters Fight Wiki (ACF).
 
-Отвечай только по теме:
-- powerscaling
-- ACF
-- battleboarding
-- cosmology
-- feats
-- hax
-- speed
-- AP
-- durability
-- dimensionality
-- tiering
+Ты ОБЯЗАН использовать ТОЛЬКО информацию из базы знаний ниже.
+Нельзя придумывать информацию.
+Нельзя использовать знания с сайтов.
+Нельзя использовать VS Battles Wiki.
+Нельзя использовать другие wiki.
+Используй только этот текст как абсолютную базу знаний.
 
-Отвечай красиво и понятно на русском языке.
+БАЗА ЗНАНИЙ:
+{acf_knowledge}
 
 Вопрос пользователя:
 {user_question}
