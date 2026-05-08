@@ -3,7 +3,8 @@ import logging
 import time
 import os
 import random
-import google.generativeai as genai
+
+from openai import OpenAI
 
 from aiogram import Bot, Dispatcher, types, F, html
 from aiogram.filters import Command
@@ -22,11 +23,16 @@ COMMENTS_CHAT_ID = -1002657178914
 
 PUBLISH_INTERVAL = 180
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# ======================= LLaMA / GROQ =======================
 
-genai.configure(api_key=GEMINI_API_KEY)
+client = OpenAI(
+    api_key= os.getenv("GROQ_API_KEY")
+    base_url="https://api.groq.com/openai/v1"
+)
 
-gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
+
+# ============================================================
 
 logging.basicConfig(level=logging.INFO)
 
@@ -264,9 +270,19 @@ async def acf_ai_chat(message: types.Message, state: FSMContext):
 {user_question}
 """
 
-        response = gemini_model.generate_content(prompt)
+        response = client.chat.completions.create(
+            model=MODEL_NAME,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.7,
+            max_tokens=2048
+        )
 
-        answer = response.text
+        answer = response.choices[0].message.content
 
         if len(answer) > 4000:
             answer = answer[:4000]
