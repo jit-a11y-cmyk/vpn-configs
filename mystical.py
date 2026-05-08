@@ -13,7 +13,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMedia
 from aiogram.enums import PollType
 from aiogram.exceptions import TelegramBadRequest
 
-TOKEN = "ТВОЙ_ТОКЕН"
+TOKEN = "8604204569:AAGIR_lXeLKKMNjkQAUHCNh0_-1k8mg7v_g"
 
 CHANNEL_ID = -1002543963250
 MOD_CHAT_ID = -1003909345553
@@ -22,7 +22,7 @@ COMMENTS_CHAT_ID = -1002657178914
 
 PUBLISH_INTERVAL = 180
 
-GEMINI_API_KEY = AIzaSyBjuUk43v0Qm1Qa1tGfdXHwFM7tLrkqnF8
+GEMINI_API_KEY = "AIzaSyBjuUk43v0Qm1Qa1tGfdXHwFM7tLrkqnF8"
 
 genai.configure(api_key=GEMINI_API_KEY)
 
