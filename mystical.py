@@ -213,7 +213,7 @@ async def finalize_preview(message, state):
         unis = "\n".join([f"➤ {html.quote(u.strip())}" for u in data['universe'].replace(',', '\n').split('\n') if u.strip()])
         conds = "Не" if data['conditions'].lower() == "нет" else html.quote(data['conditions'])
     
-        custom_footer = "Ꮶᴛᴏ нибудь жᴇᴧᴀᴛ дᴛь ᴇу ᴛᴨᴏᴩ ʙ ᴛᴇ уɸбᴛᴛᴧ?"
+        custom_footer = "Ꮶᴛᴏ нибудь жᴇᴧᴀᴇᴛ дᴀᴛь ᴇʍу ᴏᴛᴨᴏᴩ ʙ ɸᴏᴩʍᴀᴛᴇ ᴨᴩуɸбᴀᴛᴛᴧ?"
         
         caption = (
             f"<b>— автор мнения:</b> {author_mention}\n\n"
